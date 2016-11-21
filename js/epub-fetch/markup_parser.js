@@ -24,7 +24,12 @@ define([],
 
             this.parseMarkup = function(markupString, contentType) {
                 var parser = new window.DOMParser;
-                return parser.parseFromString(markupString, contentType);
+                try {
+                    return parser.parseFromString(markupString, contentType);
+                }
+                catch(e) {
+                    return  parser.parseFromString('<div></div>','text/xml');
+                }
             };
 
         };
